@@ -28,3 +28,16 @@ function wpia_enqueue_admin_scripts() {}
  * Load styles for back end
  */
 function wpia_enqueue_admin_styles() {}
+
+function wpia_toggle_mode_button( $admin_bar ) {
+
+  // top level link to WP Help
+  $args = array(
+    'id'    => 'wpia-toggle-edit-mode',
+    'title' => __( 'Toggle Edit Mode', 'wpinlineaccess' ),
+    'href'  => '#'
+  );
+  $admin_bar->add_node( $args );
+ 
+}
+add_action('admin_bar_menu', 'wpia_toggle_mode_button', 1000);
