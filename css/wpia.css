@@ -1,0 +1,64 @@
+/* Toggle Edit Mode Button
+ ==================================*/
+
+ /*Toggled State*/
+.wpia-toggled #wp-admin-bar-wpia-toggle-edit-mode a {
+	background-color:#2EA2CB;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.4) inset !important;
+}
+
+
+/* The Info Bar 
+ ==================================*/
+.wpia-info-bar {
+	display: none;
+	position:fixed;
+	z-index: 99999;
+	top: 32px;
+	width: 100%;
+	padding: 5px 20px;
+	background: #2EA2CB;
+	font-size: 13px;
+	line-height: 20px;
+	color: #fff;
+}
+
+.wpia-info-bar dl,
+.wpia-info-bar dt,
+.wpia-info-bar dd {
+	display: inline;
+}
+
+
+.wpia-info-bar dt:not([data-wpia-tooltip='']) {
+	border-bottom: 1px dotted #fff;
+	cursor:help;
+}
+
+.wpia-info-bar dd:before {
+	content:'\003a\0020\0020';
+}
+
+.wpia-info-bar dd:after {
+	display: inline-block;
+	content: '\007c';
+	width: 15px;
+	text-align: center;
+}
+
+.wpia-info-bar dd:last-child:after {
+	display: none;
+}
+
+/* Tooltip 
+ ==================================*/
+.wpia-tooltip {
+	position:absolute; /* resolves jumpy tooltip: http://stackoverflow.com/questions/16693302/jqueryui-tooltip-jumps-around */
+	max-width:20rem;
+	padding:5px;
+	font-size:13px;
+	line-height:20px;
+	border: 1px solid #2EA2CB;
+	background-color: #fff;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
