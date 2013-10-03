@@ -127,8 +127,6 @@ function wpia_editable_nav_menu( $nav_menu, $args ) {
 	if( ! is_user_logged_in() )
 		return;
 
-	var_dump($args);
-
 	$registered_menus = get_registered_nav_menus();
 	$menu_locations = get_nav_menu_locations();
 	$menu_location = $registered_menus[$args->theme_location];
