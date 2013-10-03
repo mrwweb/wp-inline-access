@@ -122,3 +122,26 @@ function wpia_add_default_info_bar_items( $wpia_info_bar_list ) {
 
 }
 add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items' );
+
+function wpia_editable_nav_menu( $nav_menu, $args ) {
+	if( ! is_user_logged_in() )
+		return;
+
+	var_dump($args);
+
+	$registered_menus = get_registered_nav_menus();
+	$menu_locations = get_nav_menu_locations();
+	$menu_location = $registered_menus[$args->theme_location];
+	$menu_id = (int) $menu_locations[$args->theme_location];
+	$menu_object = wp_get_nav_menu_object( $menu_id );
+
+	$wrapper = sprintf(
+		'<span class="wpia-is-editable" data-wpia-edit="true" wpia-edit-screen="nav-menus" wpia-edit-href="%1$s" data-wpia-edit-tooltip="This is the %3$s menu in the theme\'s %2$s menu location.">',
+		admin_url( '/nav-menus.php?action=edit&menu=' . $menu_id ),
+		esc_attr($menu_location),
+		esc_attr( $menu_object->name )
+	);
+
+	return $wrapper . $nav_menu . '</span>';
+}
+add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 999, 2 );
