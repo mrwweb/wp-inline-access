@@ -134,7 +134,7 @@ function wpia_editable_nav_menu( $nav_menu, $args ) {
 	$menu_object = wp_get_nav_menu_object( $menu_id );
 
 	$wrapper = sprintf(
-		'<span class="wpia-is-editable" data-wpia-edit="true" wpia-edit-screen="nav-menus" wpia-edit-href="%1$s" data-wpia-edit-tooltip="This is the %3$s menu in the theme\'s %2$s menu location.">',
+		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-screen="nav-menus" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="This is the &quot;%3$s&quot; Menu in the theme\'s &quot;%2$s&quot; Menu Location."">',
 		admin_url( '/nav-menus.php?action=edit&menu=' . $menu_id ),
 		esc_attr($menu_location),
 		esc_attr( $menu_object->name )
@@ -142,4 +142,4 @@ function wpia_editable_nav_menu( $nav_menu, $args ) {
 
 	return $wrapper . $nav_menu . '</span>';
 }
-add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 999, 2 );
+add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 99999, 2 );
