@@ -10,15 +10,14 @@ An alternative to front end editing. Click on an element, teleport to the right 
 
 == Description ==
 
-**THIS PLUGIN IS AN ALPHA RELEASE. USE AT OWN RISK AND TELL ME HOW TO MAKE IT BETTER (or contribute on GitHub).**
+**THIS PLUGIN IS AN ALPHA RELEASE. USE AT OWN RISK AND TELL ME HOW TO MAKE IT BETTER (or [contribute on GitHub](https://github.com/mrwweb/wp-inline-access)).**
 
-[Original Article Proposal](http://mrwweb.com/wp-inline-access/)
+Front end (or "inline") editing sounds great until you try to apply it to large complex CMS sites. Rather than try to keep users our of the admin because they can't understand it, why not build an editing system that teaches them how to use it? ([Original Article Proposal](http://mrwweb.com/wp-inline-access/))
 
-This plugin is designed to work best in conjunction with [MP6](http://wordpress.org/plugins/mp6/) or WP3.8+.
+This plugin is designed to work best in conjunction with [MP6](http://wordpress.org/plugins/mp6/) or WP3.8+ and one of the tested themes below.
 
-Front end (or "inline") editing sounds great until you try to apply it to large complex CMS sites. Rather than try to keep users our of the admin because they can't understand it, why not build an editing system that teaches them how to use it?
-
-[Development on GitHub](https://github.com/mrwweb/wp-inline-access)
+= Themes Tested =
+* Twenty Twelve
 
 == Installation ==
 
