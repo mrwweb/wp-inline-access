@@ -143,5 +143,3 @@ function wpia_editable_nav_menu( $nav_menu, $args ) {
 	return $wrapper . $nav_menu . '</span>';
 }
 add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 99999, 2 );
-
-SIDEBARS HAI!
