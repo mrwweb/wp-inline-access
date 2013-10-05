@@ -9,7 +9,8 @@
  * License: GPLv2 or later
  */
 
-WPIA_VERSION = '0.1.0';
+/* Version constant */
+define( 'WPIA_VERSION', '0.1.0' );
 
 /**
  * Load scripts for front end and back end
@@ -141,10 +142,12 @@ add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items', -10 );
  */
 function wpia_editable_span( $path, $tooltip = false ) {
 	$wrapped = sprintf(
-		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%2$s" data-wpia-edit-tooltip="%3$s">',
+		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="%2$s">',
 		admin_url( $path ),
 		$tooltip
 	);
+
+	return $wrapped;
 }
 
 /**

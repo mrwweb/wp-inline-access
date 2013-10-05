@@ -13,9 +13,15 @@
 .wpia-edit-link {
 	display: block;
 	outline: 1px dashed #6acbc4;
+	text-decoration: inherit;
+	color: inherit;
 }
 .wpia-edit-link * {
-	pointer-events:none; /* a hack that works for now, probably need js eventually */
+	/*
+	prevent links from being clickable in editable elements
+	a hack that works for now, probably need js eventually
+	*/
+	pointer-events:none;
 }
 .wpia-edit-link:hover {
 	outline: 1px solid #2EA2CB;
