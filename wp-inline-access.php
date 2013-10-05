@@ -123,6 +123,39 @@ function wpia_add_default_info_bar_items( $wpia_info_bar_list ) {
 }
 add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items' );
 
+/**
+ * output span used to define an editable region
+ * 
+ * @param  string  $path    admin path for editing, passed to admin_url()
+ * @param  string|bool $tooltip Text for tooltip in hover mode
+ * 
+ * @return string           html string, opening span
+ * 
+ * @uses	admin_url
+ */
+function wpia_editable_span( $path, $tooltip = false ) {
+	$wrapped = sprintf(
+		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%2$s" data-wpia-edit-tooltip="%3$s">',
+		admin_url( $path ),
+		$tooltip
+	);
+}
+
+/**
+ * wrap an element with span for editing
+ * 
+ * @param  string  $element HTML element to output
+ * @param  string  $path    admin path for editing, passed to admin_url()
+ * @param  string|bool $tooltip Text for tooltip in hover mode
+ * 
+ * @return string	$element wrapped by span for edit mode
+ * 
+ * @uses wpia_editable_span()
+ */
+function wpia_editable_wrap( $element, $path, $tooltip = false ) {
+	return wpia_editable_span( $path, $tooltip ) . $element . '</span>';
+}
+
 function wpia_editable_nav_menu( $menu, $args ) {
 	if( is_admin() || !current_user_can( 'edit_theme_options' ) )
 		return $menu;
@@ -133,14 +166,15 @@ function wpia_editable_nav_menu( $menu, $args ) {
 	$menu_id = (int) $menu_locations[$args->theme_location];
 	$menu_object = wp_get_nav_menu_object( $menu_id );
 
-	$wrapper = sprintf(
-		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="This is the &quot;%3$s&quot; Menu in the theme\'s &quot;%2$s&quot; Menu Location.">',
-		admin_url( '/nav-menus.php?action=edit&menu=' . $menu_id ),
-		esc_attr($menu_location),
-		esc_attr( $menu_object->name )
+	$href = '/nav-menus.php?action=edit&menu=' . $menu_id;
+
+	$tooltip = sprintf(
+		'This is the &quot;%1$s&quot; Menu in the theme\'s &quot;%2$s&quot; Menu Location.',
+		esc_attr( $menu_object->name ),
+		esc_attr($menu_location)
 	);
 
-	return $wrapper . $menu . '</span>';
+	return wpia_editable_wrap( $menu, $href, $tooltip );
 }
 add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 99999, 2 );
 
@@ -148,11 +182,10 @@ function wpia_editable_widget( $params ) {
 	if( is_admin() || ! current_user_can( 'edit_theme_options' ) )
 		return $params;
 
-	$wrapper = sprintf(
-		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="A &quot;Type&quot; of Widget with the title &quot;Title&quot; located in the &quot;Sidebar&quot; Widget Area.">',
-		admin_url( '/widgets.php' )
-	); 
-	$params[0]['before_widget'] =  $wrapper . $params[0]['before_widget'];
+	$href = '/widgets.php';
+	$tooltip = 'A &quot;Type&quot; of Widget with the title &quot;Title&quot; located in the &quot;Sidebar&quot; Widget Area.';
+
+	$params[0]['before_widget'] =  wpia_editable_span( $href, $tooltip ) . $params[0]['before_widget'];
 	$params[0]['after_widget'] =  $params[0]['after_widget'] . '</span>';
 
 	return $params;
