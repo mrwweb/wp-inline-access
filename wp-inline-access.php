@@ -9,6 +9,8 @@
  * License: GPLv2 or later
  */
 
+WPIA_VERSION = '0.1.0';
+
 /**
  * Load scripts for front end and back end
  */
@@ -18,14 +20,14 @@ function wpia_enqueue_scripts_and_styles() {
 
 	if( is_user_logged_in() ) {
 	
-		wp_enqueue_style( 'wpia_css', plugins_url( '/css/wpia.css', __FILE__ ), null, '0.1.0' );
+		wp_enqueue_style( 'wpia_css', plugins_url( '/css/wpia.css', __FILE__ ), null, WPIA_VERSION );
 
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-position' );
 		wp_enqueue_script( 'jquery-ui-tooltip' );
 
-		wp_enqueue_script( 'wpia_js', plugins_url( '/js/wpia.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position' ), '0.1.0', true );
+		wp_enqueue_script( 'wpia_js', plugins_url( '/js/wpia.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position' ), WPIA_VERSION, true );
 
 	}
 
@@ -107,7 +109,11 @@ function wpia_info_bar_list() {
 }
 
 /**
- * Add default items to Info Bar
+ * Add default items to Edit Mode Info Bar
+ * 
+ * @param  array $wpia_info_bar_list list of elements in info bar
+ * 
+ * @return array array with defaults added
  */
 function wpia_add_default_info_bar_items( $wpia_info_bar_list ) {
 
@@ -121,7 +127,7 @@ function wpia_add_default_info_bar_items( $wpia_info_bar_list ) {
 	return $wpia_info_bar_list;
 
 }
-add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items' );
+add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items', -10 );
 
 /**
  * output span used to define an editable region
@@ -142,7 +148,7 @@ function wpia_editable_span( $path, $tooltip = false ) {
 }
 
 /**
- * wrap an element with span for editing
+ * Wrap an element with span for editing
  * 
  * @param  string  $element HTML element to output
  * @param  string  $path    admin path for editing, passed to admin_url()
@@ -156,6 +162,14 @@ function wpia_editable_wrap( $element, $path, $tooltip = false ) {
 	return wpia_editable_span( $path, $tooltip ) . $element . '</span>';
 }
 
+/**
+ * Filter to make each menu editable
+ * 
+ * @param  string $menu html markup for menu
+ * @param  array $args arguments for menu output
+ * 
+ * @return string       html output for menu, wit Edit Mode span wrapper
+ */
 function wpia_editable_nav_menu( $menu, $args ) {
 	if( is_admin() || !current_user_can( 'edit_theme_options' ) )
 		return $menu;
@@ -178,6 +192,13 @@ function wpia_editable_nav_menu( $menu, $args ) {
 }
 add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 99999, 2 );
 
+/**
+ * Filter to make each widget as editable in Edit Mode
+ * 
+ * @param  array $params parameters for sidebar set by theme or WP defaults
+ * 
+ * @return array         modified parameters for sidebar
+ */
 function wpia_editable_widget( $params ) {
 	if( is_admin() || ! current_user_can( 'edit_theme_options' ) )
 		return $params;
