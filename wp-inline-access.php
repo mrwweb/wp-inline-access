@@ -207,7 +207,11 @@ function wpia_editable_widget( $params ) {
 		return $params;
 
 	$href = '/widgets.php';
-	$tooltip = 'A &quot;Type&quot; of Widget with the title &quot;Title&quot; located in the &quot;Sidebar&quot; Widget Area.';
+	$tooltip = sprintf(
+		'A &quot;%1$s&quot; Widget located in the &quot;%2$s&quot; Widget Area.',
+		$params[0]['widget_name'],
+		$params[0]['name']
+	);
 
 	$params[0]['before_widget'] =  wpia_editable_span( $href, $tooltip ) . $params[0]['before_widget'];
 	$params[0]['after_widget'] =  $params[0]['after_widget'] . '</span>';
