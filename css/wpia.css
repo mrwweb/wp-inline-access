@@ -51,7 +51,6 @@
 	display: inline;
 }
 
-
 .wpia-info-bar dt:not([data-wpia-tooltip='']) {
 	border-bottom: 1px dotted #fff;
 	cursor:help;

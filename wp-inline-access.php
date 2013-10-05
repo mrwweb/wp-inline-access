@@ -15,24 +15,18 @@ define( 'WPIA_VERSION', '0.1.0' );
 /**
  * Load scripts for front end and back end
  */
-add_action( 'wp_enqueue_scripts', 'wpia_enqueue_scripts_and_styles' );
-add_action( 'admin_enqueue_scripts', 'wpia_enqueue_scripts_and_styles' );
 function wpia_enqueue_scripts_and_styles() {
-
-	if( is_user_logged_in() ) {
-	
+	if( is_user_logged_in() ) {	
 		wp_enqueue_style( 'wpia_css', plugins_url( '/css/wpia.css', __FILE__ ), null, WPIA_VERSION );
-
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-position' );
 		wp_enqueue_script( 'jquery-ui-tooltip' );
-
 		wp_enqueue_script( 'wpia_js', plugins_url( '/js/wpia.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position' ), WPIA_VERSION, true );
-
 	}
-
 }
+add_action( 'wp_enqueue_scripts', 'wpia_enqueue_scripts_and_styles' );
+add_action( 'admin_enqueue_scripts', 'wpia_enqueue_scripts_and_styles' );
 
 /**
  * Add "Toggle Edit Mode" button to Admin Bar
@@ -110,25 +104,63 @@ function wpia_info_bar_list() {
 }
 
 /**
- * Add default items to Edit Mode Info Bar
+ * Sets "Type" in Info Bar
+ * 
+ * Type is the only information always displayed so this function is used to trigger and filter other information
  * 
  * @param  array $wpia_info_bar_list list of elements in info bar
  * 
  * @return array array with defaults added
  */
-function wpia_add_default_info_bar_items( $wpia_info_bar_list ) {
+function wpia_info_bar_page_type( $wpia_info_bar_list ) {
+
+	global $wp_query;
+	$queried_object = $wp_query->get_queried_object();
+
+	/* Add the Type */
+	$type = false;
+
+	if( $wp_query->is_singular ) {
+		$type = $queried_object->post_type;
+	} elseif ( $wp_query->is_tag ) {
+		$type = 'Tag Archive';
+	} elseif ( $wp_query->is_category ) {
+		$type = 'Category Archive';
+	} elseif ( $wp_query->is_tax ) {
+		$type = 'Taxonomy Term Archive';
+	} elseif ( $wp_query->is_post_type_archive ) {
+		$type = 'Post Type Archive';
+	} elseif ( $wp_query->is_search ) {
+		$type = 'Search Results Page';
+	} elseif ( $wp_query->is_404 ) {
+		$type = '404 Page';
+	} elseif ( $wp_query->is_post_type_archive ) {
+		$type = 'Post Type Archive';
+	} elseif ( $wp_query->is_author ) {
+		$type = 'Author Archive';
+	} elseif ( $wp_query->is_day ) {
+		$type = 'Day Archive';
+	} elseif ( $wp_query->is_month ) {
+		$type = 'Month Archive';
+	} elseif ( $wp_query->is_year ) {
+		$type = 'Year Archive';
+	}
+
+	$type = apply_filters( 'wpia_info_bar_type', $type );
 
 	// Add "Type"
-	$wpia_info_bar_list[] = array(
-		'title' => 'Type',
-		'value' => 'The Type!',
-		'tooltip' => 'WordPress uses a variety of web page types depending on the page being displayed.'
-	);
+	if( $type ) {
+		$wpia_info_bar_list[] = array(
+			'title' => 'Type',
+			'value' => $type,
+			'tooltip' => 'WordPress uses a variety of web page types depending on the page being displayed.'
+		);
+	}
 
 	return $wpia_info_bar_list;
 
 }
-add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items', -10 );
+add_filter( 'wpia_info_bar_list', 'wpia_info_bar_page_type', -10 );
 
 /**
  * output span used to define an editable region
