@@ -123,9 +123,9 @@ function wpia_add_default_info_bar_items( $wpia_info_bar_list ) {
 }
 add_filter( 'wpia_info_bar_list', 'wpia_add_default_info_bar_items' );
 
-function wpia_editable_nav_menu( $nav_menu, $args ) {
-	if( ! is_user_logged_in() )
-		return;
+function wpia_editable_nav_menu( $menu, $args ) {
+	if( is_admin() || !current_user_can( 'edit_theme_options' ) )
+		return $menu;
 
 	$registered_menus = get_registered_nav_menus();
 	$menu_locations = get_nav_menu_locations();
@@ -134,12 +134,27 @@ function wpia_editable_nav_menu( $nav_menu, $args ) {
 	$menu_object = wp_get_nav_menu_object( $menu_id );
 
 	$wrapper = sprintf(
-		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-screen="nav-menus" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="This is the &quot;%3$s&quot; Menu in the theme\'s &quot;%2$s&quot; Menu Location."">',
+		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="This is the &quot;%3$s&quot; Menu in the theme\'s &quot;%2$s&quot; Menu Location.">',
 		admin_url( '/nav-menus.php?action=edit&menu=' . $menu_id ),
 		esc_attr($menu_location),
 		esc_attr( $menu_object->name )
 	);
 
-	return $wrapper . $nav_menu . '</span>';
+	return $wrapper . $menu . '</span>';
 }
 add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 99999, 2 );
+
+function wpia_editable_widget( $params ) {
+	if( is_admin() || ! current_user_can( 'edit_theme_options' ) )
+		return $params;
+
+	$wrapper = sprintf(
+		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="A &quot;Type&quot; of Widget with the title &quot;Title&quot; located in the &quot;Sidebar&quot; Widget Area.">',
+		admin_url( '/widgets.php' )
+	); 
+	$params[0]['before_widget'] =  $wrapper . $params[0]['before_widget'];
+	$params[0]['after_widget'] =  $params[0]['after_widget'] . '</span>';
+
+	return $params;
+}
+add_filter( 'dynamic_sidebar_params', 'wpia_editable_widget', 99999 );
