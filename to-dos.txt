@@ -1,0 +1,40 @@
+An incredibly incomplete list of things left to do
+
+== Admin ==
+* Add support to return to last front-end page that had Edit Mode toggled on.
+* Is there any other use for edit mode in the back end? Probably not.
+
+== Edit Support For ==
+* Site Title
+* Site Description
+* posts (i.e. not just the post type "Posts")
+* Featured Image?
+* Term descriptions
+* Comments?
+* Custom Fields (aka Post Meta)
+
+== Info Bar Information ==
+* Archives:
+** Post Type(s)
+** Terms
+** Taxonomies
+
+* Settings:
+** Static Front Page
+** Page For Posts
+** Max Posts Per Page
+
+* On Page post type posts:
+** Parent
+
+* On Post post type posts: (Say that 10x fast!)
+** Post Format
+
+* On singular
+** Last Updated? (This seems most useful)
+** Posted?
+** Terms?
+
+== Example Additional Plugin Support ==
+* ACF
+* CPT Descriptions
