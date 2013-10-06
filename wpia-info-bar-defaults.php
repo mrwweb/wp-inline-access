@@ -77,8 +77,13 @@ function wpia_info_bar_page_template() {
 	// get page template being used
 	$page_template = get_page_template_slug();
 	$page_templates = wp_get_theme()->get_page_templates();
-	$template_name = $page_templates[$page_template];
 	
+	// Make sure there's not some template left-over from old theme
+	if( !array_key_exists($page_template, $page_templates) )
+		return;
+
+	$template_name = $page_templates[$page_template];
+
 	// Create a value tooltip for optional usage by themes
 	$value_tooltip = false;
 	$value_tooltip = apply_filters( 'wpia_template_value_tooltip', $value_tooltip );
