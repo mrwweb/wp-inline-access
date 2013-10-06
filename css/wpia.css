@@ -39,6 +39,7 @@
 	z-index: 99998; /* Below the admin bar */
 	top: 32px;
 	width: 100%;
+	left: 0;
 	padding: 5px 20px;
 	background: #2EA2CB;
 	font-size: 13px;
@@ -78,6 +79,8 @@
  ==================================*/
 .wpia-tooltip {
 	position:absolute; /* resolves jumpy tooltip: http://stackoverflow.com/questions/16693302/jqueryui-tooltip-jumps-around */
+	z-index: 99999;
+	display: inline-block;
 	max-width:20rem;
 	padding:5px;
 	font-size:13px;
