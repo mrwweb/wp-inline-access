@@ -35,7 +35,7 @@
 .wpia-info-bar {
 	display: none;
 	position:fixed;
-	z-index: 99999;
+	z-index: 99998; /* Below the admin bar */
 	top: 32px;
 	width: 100%;
 	padding: 5px 20px;
@@ -51,7 +51,8 @@
 	display: inline;
 }
 
-.wpia-info-bar dt:not([data-wpia-tooltip='']) {
+.wpia-info-bar dt:not([data-wpia-tooltip='']),
+.wpia-info-bar dd:not([data-wpia-tooltip='']) {
 	border-bottom: 1px dotted #fff;
 	cursor:help;
 }

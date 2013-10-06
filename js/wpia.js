@@ -39,7 +39,7 @@ jQuery(document).ready(function($){
 	});
 
 	// init tooltips
-	$('dt', $infobar).tooltip({
+	$('dt,dd', $infobar).tooltip({
 		items: '[data-wpia-tooltip]',
 		content: function() {
 			return $(this).data('wpia-tooltip');

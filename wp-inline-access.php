@@ -33,6 +33,10 @@ add_action( 'admin_enqueue_scripts', 'wpia_enqueue_scripts_and_styles' );
  */
 function wpia_toggle_mode_button( $admin_bar ) {
 
+	// for now, no edit button in admin
+	if( !is_admin() )
+		return;
+
 	// top level link to WP Help
 	$toggle_button_args = array(
 		'id'    => 'wpia-toggle-edit-mode',
@@ -49,58 +53,53 @@ add_action('admin_bar_menu', 'wpia_toggle_mode_button', 1000);
  */
 function wpia_output_info_bar() {
 
-	$wpia_info_bar_list = wpia_info_bar_list();
+	// for now, no infobar in admin
+	if( is_admin() )
+		return;
 
-	$wpia_info_bar_list_items = '';
-
-	foreach ( $wpia_info_bar_list as $item ) {
-
-		// HTML allowed in info bar values
-		$allowed_html = array(
-		    'a' => array(
-		        'href' => array()
-		    ),
-		    'em' => array(),
-		    'strong' => array()
-		);
-
-		$title = esc_attr( $item['title'] );
-		$title_as_attribute = sanitize_title_with_dashes( $item['title'] );
-		$value = wp_kses( $item['value'], $allowed_html );
-		$tooltip = esc_attr( $item['tooltip'] );
-		
-		$item_output = sprintf(
-			'<dt class="wpia-info-%1$s" data-wpia-tooltip="%3$s">%2$s</dt><dd class="wpia-info-%1$s">%4$s</dd>',
-			$title_as_attribute,
-			$title,
-			$tooltip,
-			$value
-		);
-
-		$wpia_info_bar_list_items .= $item_output;
-
-	}
-
-	echo '<div class="wpia-info-bar"><dl>' . $wpia_info_bar_list_items . '</dl></div> <!-- end .wpia-info-bar -->';
+	echo '<div class="wpia-info-bar"><dl>';
+	do_action( 'wpia_info_bar' );
+	echo '</dl></div> <!-- end .wpia-info-bar -->';
 
 }
 add_action( 'wp_after_admin_bar_render', 'wpia_output_info_bar' );
 
 /**
- * Initialize and output array of Info Bar pieces of info
+ * Creates html for a single item in the Info Bar
  * 
- * Each array should contain the keys: label, value, tooltip
+ * @param  string $label         label for info bar item
+ * @param  string $value         value for info bar item
+ * @param  string $label_tooltip hover tooltip for $label value
+ * @param  string $value_tooltip hover tooltip for $value value
+ * 
+ * @return string                html for single item in info bar
  */
-function wpia_info_bar_list() {
+function wpia_info_bar_item( $label, $value, $label_tooltip, $value_tooltip ) {
+	// HTML allowed in info bar values
+	$allowed_html = array(
+	    'a' => array(
+	        'href' => array()
+	    ),
+	    'em' => array(),
+	    'strong' => array()
+	);
 
-	// init array
-	$wpia_info_bar_items = array();
+	$label = esc_attr( $label );
+	$label_as_attribute = sanitize_title_with_dashes( $label );
+	$value = wp_kses( $value, $allowed_html );
+	$label_tooltip = esc_attr( $label_tooltip );
+	$value_tooltip = esc_attr( $value_tooltip );
 
-	// allow others to filter
-	$wpia_info_bar_items = apply_filters( 'wpia_info_bar_list', $wpia_info_bar_items );
+	$item = sprintf(
+		'<dt class="wpia-info-%1$s" data-wpia-tooltip="%3$s">%2$s</dt><dd class="wpia-info-%1$s" data-wpia-tooltip="%5$s">%4$s</dd>',
+		$label_as_attribute,
+		$label,
+		$label_tooltip,
+		$value,
+		$value_tooltip
+	);
 
-	return $wpia_info_bar_items;
-
+	return $item;
 }
 
 /**
@@ -108,20 +107,25 @@ function wpia_info_bar_list() {
  * 
  * Type is the only information always displayed so this function is used to trigger and filter other information
  * 
- * @param  array $wpia_info_bar_list list of elements in info bar
- * 
  * @return array array with defaults added
  */
-function wpia_info_bar_page_type( $wpia_info_bar_list ) {
+function wpia_info_bar_page_type() {
 
 	global $wp_query;
 	$queried_object = $wp_query->get_queried_object();
 
 	/* Add the Type */
 	$type = false;
+	$value_tooltip = false;
 
 	if( $wp_query->is_singular ) {
 		$type = $queried_object->post_type;
+		if( $wp_query->is_page && is_page_template() ) {
+			add_action( 'wpia_info_bar', 'wpia_info_bar_page_template' );
+		}
+	} elseif ( $wp_query->is_posts_page ) {
+		$type = 'Page for Posts';
+		$value_tooltip = 'This page shows a chronological listing of all Posts.';
 	} elseif ( $wp_query->is_tag ) {
 		$type = 'Tag Archive';
 	} elseif ( $wp_query->is_category ) {
@@ -134,6 +138,7 @@ function wpia_info_bar_page_type( $wpia_info_bar_list ) {
 		$type = 'Search Results Page';
 	} elseif ( $wp_query->is_404 ) {
 		$type = '404 Page';
+		$value_tooltip = 'A "404 Error" means the intended page cannot be found.';
 	} elseif ( $wp_query->is_post_type_archive ) {
 		$type = 'Post Type Archive';
 	} elseif ( $wp_query->is_author ) {
@@ -148,19 +153,35 @@ function wpia_info_bar_page_type( $wpia_info_bar_list ) {
 
 	$type = apply_filters( 'wpia_info_bar_type', $type );
 
-	// Add "Type"
-	if( $type ) {
-		$wpia_info_bar_list[] = array(
-			'title' => 'Type',
-			'value' => $type,
-			'tooltip' => 'WordPress uses a variety of web page types depending on the page being displayed.'
-		);
-	}
-
-	return $wpia_info_bar_list;
+	echo wpia_info_bar_item( 'Type', $type, 'WordPress uses a variety of web page types depending on the page being displayed.', $value_tooltip );
 
 }
-add_filter( 'wpia_info_bar_list', 'wpia_info_bar_page_type', -10 );
+add_action( 'wpia_info_bar', 'wpia_info_bar_page_type', -10 );
+
+/**
+ * output template value in info par
+ * 
+ * @return string           info bar item listing page template
+ * 
+ * @uses   wpia_info_bar_item
+ * @uses   wp_get_theme()
+ * @uses   get_page_template_slug()
+ */
+function wpia_info_bar_page_template() {
+	global $wp_query;
+
+	// get page template being used
+	$page_template = get_page_template_slug();
+	$page_templates = wp_get_theme()->get_page_templates();
+	$template_name = $page_templates[$page_template];
+	
+	// Create a value tooltip for optional usage by themes
+	$value_tooltip = false;
+	$value_tooltip = apply_filters( 'wpia_template_value_tooltip', $value_tooltip );
+	
+	// Output template tooltip
+	echo wpia_info_bar_item( 'Page Template', $template_name, 'A page template changes the layout or adds special content to a Page.', $value_tooltip );
+}
 
 /**
  * output span used to define an editable region
