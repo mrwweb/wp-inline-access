@@ -16,6 +16,13 @@ Front end (or "inline") editing sounds great until you try to apply it to large 
 
 This plugin is designed to work best in conjunction with [MP6](http://wordpress.org/plugins/mp6/) or WP3.8+ and one of the tested themes below.
 
+= Editable Items Supported =
+* Menus
+* Widgets
+
+= Tested Browsers =
+* Chrome
+
 = Themes Tested =
 * Twenty Twelve
 
