@@ -25,6 +25,7 @@ This plugin is designed to work best in conjunction with [MP6](http://wordpress.
 
 = Themes Tested =
 * Twenty Twelve
+* Twenty Ten
 
 == Installation ==
 
