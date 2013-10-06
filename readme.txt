@@ -1,8 +1,8 @@
 === WP Inline Access ===
 Contributors: mrwweb
 Tags: Inline Access, Editing, Admin, Front End Access
-Requires at least: 
-Tested up to: 
+Requires at least: Unknown
+Tested up to: 3.6
 Stable tag: 0.1.0
 License: GPLv2 or later
 
