@@ -3,6 +3,7 @@ An incredibly incomplete list of things left to do
 == Admin ==
 * Add support to return to last front-end page that had Edit Mode toggled on.
 * Is there any other use for edit mode in the back end? Probably not.
+* Styles (and click events?) for #targeted elements
 
 == Edit Support For ==
 * Site Title

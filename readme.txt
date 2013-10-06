@@ -10,9 +10,11 @@ An alternative to front end editing. Click on an element, teleport to the right 
 
 == Description ==
 
+([Original Proposal Article](http://mrwweb.com/wp-inline-access/))
+
 **THIS PLUGIN IS AN ALPHA RELEASE. USE AT OWN RISK AND TELL ME HOW TO MAKE IT BETTER (or [contribute on GitHub](https://github.com/mrwweb/wp-inline-access)).**
 
-Front end (or "inline") editing sounds great until you try to apply it to large complex CMS sites. Rather than try to keep users our of the admin because they can't understand it, why not build an editing system that teaches them how to use it? ([Original Article Proposal](http://mrwweb.com/wp-inline-access/))
+Front end (or "inline") editing sounds great until you try to apply it to large complex CMS sites. Rather than try to keep users out of the admin because they can't understand it, why not build an editing system that teaches them how to use it?
 
 This plugin is designed to work best in conjunction with [MP6](http://wordpress.org/plugins/mp6/) or WP3.8+ and one of the tested themes below.
 
@@ -42,7 +44,13 @@ This plugin is designed to work best in conjunction with [MP6](http://wordpress.
 1. Install plugin.
 1. Activate plugin.
 
+= Usage =
+Once installed, click the "Toggle Edit Mode" button in the Admin Bar to display the Info Bar and editable page elements.
+
 == Frequently Asked Questions ==
+
+= So I can click on something and change the text right there? =
+No. All editing is still done in the admin. This is NOT front end editing.
 
 = What's your goal for this plugin =
 
@@ -50,7 +58,7 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 == Screenshots ==
 
-Coming Soon.
+1. This plugin creates a new "Toggle Edit Mode" button in the Admin Bar. Click it to learn about the web page you're viewing and enable clickable, editable elements.
 
 == Changelog ==
 
@@ -61,9 +69,3 @@ Coming Soon.
 
 = 0.1.0 =
 You can't upgrade to this because nothing precedes it. Deep.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
