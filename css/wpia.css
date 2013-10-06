@@ -11,10 +11,11 @@
 /* Editable Elements
  ==================================*/
 .wpia-edit-link {
-	display: block;
-	outline: 1px dashed #6acbc4;
-	text-decoration: inherit;
-	color: inherit;
+	display: block !important;
+	outline: 1px dashed #6acbc4 !important;
+	text-decoration: inherit !important;
+	color: inherit !important;
+	overflow: hidden !important; /* handle floated editable elements */
 }
 .wpia-edit-link * {
 	/*
