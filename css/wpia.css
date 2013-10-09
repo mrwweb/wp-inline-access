@@ -12,7 +12,7 @@
  ==================================*/
 .wpia-edit-link {
 	display: block !important;
-	outline: 1px dashed #6acbc4 !important;
+	outline: 1px dashed #6ACBC4 !important;
 	text-decoration: inherit !important;
 	color: inherit !important;
 	overflow: hidden !important; /* handle floated editable elements */
@@ -88,4 +88,21 @@
 	border: 1px solid #2EA2CB;
 	background-color: #fff;
 	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+
+
+/* Target Styles for Admin
+ ==================================*/
+.widget-top,
+.widget-inside {
+	-webkit-transition: background-color 1s .5s, color 1s .5s;
+	-ms-transition: background-color 1s .5s, color 1s .5s;
+	transition: background-color 1s .5s, color 1s .5s;
+}
+.wpia-active-widget .widget-top {
+	background-color:#2EA2CB;
+	color:#fff;
+}
+.wpia-active-widget .widget-inside {
+	background-color:#CFE1EF;
 }

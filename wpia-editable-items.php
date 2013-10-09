@@ -89,7 +89,7 @@ function wpia_editable_widget( $params ) {
 	if( is_admin() || ! current_user_can( 'edit_theme_options' ) )
 		return $params;
 
-	$href = '/widgets.php';
+	$href = '/widgets.php#' . $params[0]['widget_id'];
 	$tooltip = sprintf(
 		'A &quot;%1$s&quot; Widget located in the &quot;%2$s&quot; Widget Area.',
 		$params[0]['widget_name'],
