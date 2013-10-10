@@ -11,12 +11,14 @@
 /* Editable Elements
  ==================================*/
 .wpia-edit-link,
-.wpia-toggled .wp-is-editable {
+.wpia-toggled .wpia-is-editable {
 	position: relative;
 	display: block !important;
 	overflow: hidden !important; /* handle floated editable elements */
 }
 .wpia-edit-link {
+	padding:0 !important;
+	margin:0 !important;
 	outline: 1px dashed #6ACBC4 !important;
 	text-decoration: inherit !important;
 	color: inherit !important;
