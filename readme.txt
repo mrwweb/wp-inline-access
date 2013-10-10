@@ -64,6 +64,8 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 = 0.2.0 (DATE) =
 * Zoom to and highlight clicked edit in admin.
+* "Site description" is now editable
+* Improved CSS: Highlight targeted text inputs. More bulletproof front-end CSS.
 
 = 0.1.0 (October 7, 2013) =
 * Alpha Release
@@ -71,7 +73,7 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Upgrade Notice ==
 
 = 0.2.0 =
-Highlights clicked widget on admin. More information in Info Bar. More editable items.
+Highlights clicked widget on admin. More information in Info Bar. More editable items. See changelog for deets.
 
 = 0.1.0 =
 You can't upgrade to this because nothing precedes it. Deep.
