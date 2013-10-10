@@ -71,7 +71,7 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Upgrade Notice ==
 
 = 0.2.0 =
-Highlights clicked widget on admin.
+Highlights clicked widget on admin. More information in Info Bar. More editable items.
 
 = 0.1.0 =
 You can't upgrade to this because nothing precedes it. Deep.

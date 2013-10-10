@@ -26,6 +26,7 @@ $(document).ready(function (){
 					tooltipClass: 'wpia-tooltip',
 					track: true
 				});
+				console.log($(this).data('wpia-edit-tooltip'));
 			});
 		} else {
 			$editableItems.each( function() {

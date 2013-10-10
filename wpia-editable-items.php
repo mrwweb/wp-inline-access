@@ -36,6 +36,8 @@ function wpia_editable_span( $path, $tooltip = false ) {
  * @param  string  $path    admin path for editing, passed to admin_url()
  * @param  string|bool $tooltip Text for tooltip in hover mode
  * 
+ * Note: For double-quotes in $tooltip, use "&quot;"
+ * 
  * @return string	$element wrapped by span for edit mode
  * 
  * @uses wpia_editable_span()
@@ -102,3 +104,20 @@ function wpia_editable_widget( $params ) {
 	return $params;
 }
 add_filter( 'dynamic_sidebar_params', 'wpia_editable_widget', 99999 );
+
+function wpia_editable_bloginfo( $output, $show ) {
+	switch ($show) {
+		case 'description':
+			$href = '/options-general.php#blogdescription';
+			$tooltip = 'The &quot;Tagline&quot; (or &quot;Site Description&quot;) is a site-wide setting.';
+			$output = wpia_editable_wrap( $output, $href, $tooltip );
+			break;
+
+		// site name is getting used in attributes, even in twenty twelve. not sure what to do about that.
+		
+		default:
+			break;
+	}
+	return $output;
+}
+add_filter( 'bloginfo', 'wpia_editable_bloginfo', 99999, 2 );
