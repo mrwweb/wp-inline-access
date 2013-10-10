@@ -5,6 +5,31 @@ $.fn.exists = function () {
     return this.length !== 0;
 }
 
+function wpiaTargetToggle() {
+	// get hash
+	var hash = window.location.hash;
+
+	// we're done if there's nothing left to do
+	if( hash.search('wpia') == -1 )
+		return;
+
+	// strip "wpia-" from has
+	id = hash.replace(/^.*#wpia-/, '');
+
+	var $targetedElement = $('#' + id);
+
+	// stop if nothing's targeted
+	if( !$targetedElement.exists() )
+		return;
+
+	$targetedElement.addClass('wpia-targeted');
+
+	// scroll to the widget
+    $('html, body').animate({
+        scrollTop: $targetedElement.offset().top - 50 // -50 accounts for admin bar
+    }, 750);
+}
+
 // on ready
 $(document).ready(function (){
 	
@@ -60,12 +85,15 @@ $(document).ready(function (){
 		}
 	});
 
+	wpiaTargetToggle();
+
 });
 
 // on load
 $(window).load(function() {
 
 	// function for expanding targeted widgets in the admin
+	// differs from generic target script to handle
 	function expandTargetedWidget() {
 		target = window.location.hash;
 
@@ -73,7 +101,7 @@ $(window).load(function() {
 			return;
 
 		//strip "#"
-		target = target.replace(/^.*#/, '');
+		target = target.replace(/^.*#wpia-/, '');
 
 		$targetedWidget = $('.widget[id$=' + target + ']');
 

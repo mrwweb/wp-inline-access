@@ -96,5 +96,5 @@ function wpia_info_bar_page_template() {
 }
 
 function wpia_info_bar_front() {
-	echo wpia_info_bar_item( 'Front Page', 'This page is set as the &quot;Static Front Page&quot; on <strong><a href="' . admin_url( '/options-reading.php#page_for_posts' ) . '">Settings > Reading</a></strong>.' );
+	echo wpia_info_bar_item( 'Front Page', 'This page is set as the &quot;Static Front Page&quot; on <strong><a href="' . admin_url( '/options-reading.php#wpia-page_on_front' ) . '">Settings > Reading</a></strong>.' );
 }

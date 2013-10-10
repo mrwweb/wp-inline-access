@@ -91,7 +91,7 @@ function wpia_editable_widget( $params ) {
 	if( is_admin() || ! current_user_can( 'edit_theme_options' ) )
 		return $params;
 
-	$href = '/widgets.php#' . $params[0]['widget_id'];
+	$href = '/widgets.php#wpia-' . $params[0]['widget_id'];
 	$tooltip = sprintf(
 		'A &quot;%1$s&quot; Widget located in the &quot;%2$s&quot; Widget Area.',
 		$params[0]['widget_name'],
@@ -108,7 +108,7 @@ add_filter( 'dynamic_sidebar_params', 'wpia_editable_widget', 99999 );
 function wpia_editable_bloginfo( $output, $show ) {
 	switch ($show) {
 		case 'description':
-			$href = '/options-general.php#blogdescription';
+			$href = '/options-general.php#wpia-blogdescription';
 			$tooltip = 'The &quot;Tagline&quot; (or &quot;Site Description&quot;) is a site-wide setting.';
 			$output = wpia_editable_wrap( $output, $href, $tooltip );
 			break;

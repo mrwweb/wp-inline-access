@@ -109,7 +109,8 @@
  ==================================*/
 .widget-top,
 .widget-inside,
-input[type="text"] {
+input,
+select {
 	-webkit-transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
 	-ms-transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
 	transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
@@ -122,7 +123,8 @@ input[type="text"] {
 	background-color:#CFE1EF;
 }
 
-input[type="text"]:target {
+input.wpia-targeted,
+select.wpia-targeted {
 	border: 1px solid #2EA2CB !important;
 	background: #f0f0b8;
 }
