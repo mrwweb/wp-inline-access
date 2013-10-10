@@ -112,10 +112,11 @@
 input,
 select,
 #content_ifr {
-	-webkit-transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
-	-ms-transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
-	transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
+	-webkit-transition: background-color 1s .5s, color 1s .5s, border 1s .5s, box-shadow 1s .5s;
+	-ms-transition: background-color 1s .5s, color 1s .5s, border 1s .5s, box-shadow 1s .5s;
+	transition: background-color 1s .5s, color 1s .5s, border 1s .5s, box-shadow 1s .5s;
 }
+
 .wpia-active-widget .widget-top {
 	background-color:#2EA2CB;
 	color:#fff;
@@ -125,10 +126,8 @@ select,
 }
 
 input.wpia-targeted,
-select.wpia-targeted {
-	border: 1px solid #2EA2CB !important;
-	background: #f0f0b8;
-}
+select.wpia-targeted,
 #content_ifr.wpia-targeted {
-	border: 1px solid #2EA2CB;
+	border: 1px solid #2EA2CB !important;
+	box-shadow: 0 0 4px rgba(0,0,0,.4);
 }
