@@ -29,7 +29,7 @@ This plugin is designed to work best in conjunction with [MP6](http://wordpress.
 
 = Themes Tested =
 * Twenty Twelve
-* Twenty Eleven (Bug: Menu tooltip doesn't appear.)
+* Twenty Eleven
 * Twenty Ten
 
 == Installation ==
@@ -67,7 +67,8 @@ This plugin is a proof of concept for something that, if I dream big, might make
 = 0.2.0 (October 10, 2013) =
 * Zoom to and highlight clicked edit in admin.
 * "Site description" is now editable
-* Improved CSS: Highlight targeted text inputs. More bulletproof front-end CSS.
+* Improved CSS: Highlight targeted text inputs.
+* More bulletproof front-end CSS. Including Twenty Eleven fix.
 * anything outputted with `the_content` is now editable.
 * Hi, #wpseattle!
 
