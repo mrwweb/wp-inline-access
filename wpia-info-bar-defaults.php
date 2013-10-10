@@ -16,7 +16,7 @@
 function wpia_info_bar_page_type() {
 
 	global $wp_query;
-	$queried_object = $wp_query->get_queried_object();
+	$queried_object = get_queried_object();
 
 	/* Add the Type */
 	$type = false;
@@ -26,6 +26,9 @@ function wpia_info_bar_page_type() {
 		$type = $queried_object->post_type;
 		if( $wp_query->is_page && is_page_template() ) {
 			add_action( 'wpia_info_bar', 'wpia_info_bar_page_template' );
+		}
+		if( get_query_var('page_id') == get_option( 'page_on_front' ) ) {
+			add_action( 'wpia_info_bar', 'wpia_info_bar_front' );
 		}
 	} elseif ( $wp_query->is_posts_page ) {
 		$type = 'Page for Posts';
@@ -90,4 +93,8 @@ function wpia_info_bar_page_template() {
 	
 	// Output template tooltip
 	echo wpia_info_bar_item( 'Page Template', $template_name, 'A page template changes the layout or adds special content to a Page.', $value_tooltip );
+}
+
+function wpia_info_bar_front() {
+	echo wpia_info_bar_item( 'Front Page', 'This page is set as the &quot;Static Front Page&quot; on <strong><a href="' . admin_url( '/options-reading.php#page_for_posts' ) . '">Settings > Reading</a></strong>.' );
 }

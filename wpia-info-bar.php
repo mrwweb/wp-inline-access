@@ -52,7 +52,7 @@ add_action( 'wp_after_admin_bar_render', 'wpia_output_info_bar' );
  * 
  * @return string                html for single item in info bar
  */
-function wpia_info_bar_item( $label, $value, $label_tooltip, $value_tooltip ) {
+function wpia_info_bar_item( $label, $value, $label_tooltip = false, $value_tooltip = false ) {
 	// HTML allowed in info bar values
 	$allowed_html = array(
 	    'a' => array(

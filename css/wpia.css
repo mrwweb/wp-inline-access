@@ -53,6 +53,14 @@
 	color: #fff;
 }
 
+.wpia-info-bar a {
+	color: #fff;
+}
+.wpia-info-bar a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
 .wpia-info-bar dl,
 .wpia-info-bar dt,
 .wpia-info-bar dd {
