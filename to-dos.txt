@@ -3,11 +3,10 @@ An incredibly incomplete list of things left to do
 == Admin ==
 * Add support to return to last front-end page that had Edit Mode toggled on.
 * Is there any other use for edit mode in the back end? Probably not.
-* Styles (and click events?) for #targeted elements (added this for widgets on 10/09/13)
+* Styles (and click events?) for targeted elements (added this for widgets, select, and input on 10/09/13)
 
 == Edit Support For ==
 * Site Title
-* Site Description
 * posts (i.e. not just the post type "Posts")
 * Featured Image?
 * Term descriptions
@@ -21,7 +20,6 @@ An incredibly incomplete list of things left to do
 ** Taxonomies
 
 * Settings:
-** Static Front Page
 ** Page For Posts
 ** Max Posts Per Page
 
