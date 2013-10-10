@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: Inline Access, Editing, Admin, Front End Access
 Requires at least: Unknown
 Tested up to: 3.6
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 
 An alternative to front end editing. Click on an element, teleport to the right admin screen.
@@ -21,6 +21,8 @@ This plugin is designed to work best in conjunction with [MP6](http://wordpress.
 = Editable Items Supported =
 * Menus
 * Widgets
+* Site Description ("Tagline")
+* Body Content (i.e. `the_content`)
 
 = Tested Browsers =
 * Chrome
@@ -62,10 +64,12 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 == Changelog ==
 
-= 0.2.0 (DATE) =
+= 0.2.0 (October 10, 2013) =
 * Zoom to and highlight clicked edit in admin.
 * "Site description" is now editable
 * Improved CSS: Highlight targeted text inputs. More bulletproof front-end CSS.
+* anything outputted with `the_content` is now editable.
+* Hi, #wpseattle!
 
 = 0.1.0 (October 7, 2013) =
 * Alpha Release
@@ -73,7 +77,7 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Upgrade Notice ==
 
 = 0.2.0 =
-Highlights clicked widget on admin. More information in Info Bar. More editable items. See changelog for deets.
+Highlight clicked element in dashboard. Content and Tagline are editable. CSS improvements. See changelog for deets.
 
 = 0.1.0 =
 You can't upgrade to this because nothing precedes it. Deep.
