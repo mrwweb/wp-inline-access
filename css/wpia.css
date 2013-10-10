@@ -10,13 +10,16 @@
 
 /* Editable Elements
  ==================================*/
-.wpia-edit-link {
+.wpia-edit-link,
+.wpia-toggled .wp-is-editable {
 	position: relative;
 	display: block !important;
+	overflow: hidden !important; /* handle floated editable elements */
+}
+.wpia-edit-link {
 	outline: 1px dashed #6ACBC4 !important;
 	text-decoration: inherit !important;
 	color: inherit !important;
-	overflow: hidden !important; /* handle floated editable elements */
 }
 .wpia-toggled .wpia-is-editable * {
 	/*
