@@ -110,7 +110,8 @@
 .widget-top,
 .widget-inside,
 input,
-select {
+select,
+#content_ifr {
 	-webkit-transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
 	-ms-transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
 	transition: background-color 1s .5s, color 1s .5s, border 1s .5s;
@@ -127,4 +128,7 @@ input.wpia-targeted,
 select.wpia-targeted {
 	border: 1px solid #2EA2CB !important;
 	background: #f0f0b8;
+}
+#content_ifr.wpia-targeted {
+	border: 1px solid #2EA2CB;
 }

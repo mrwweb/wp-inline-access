@@ -18,6 +18,8 @@ function wpiaTargetToggle() {
 
 	var $targetedElement = $('#' + id);
 
+	console.log($targetedElement);
+
 	// stop if nothing's targeted
 	if( !$targetedElement.exists() )
 		return;
@@ -85,8 +87,6 @@ $(document).ready(function (){
 		}
 	});
 
-	wpiaTargetToggle();
-
 });
 
 // on load
@@ -131,6 +131,8 @@ $(window).load(function() {
 	if( $('body').hasClass('widgets-php') ) {
 		expandTargetedWidget();
 	}
+
+	wpiaTargetToggle();
 
 });
 

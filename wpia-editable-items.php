@@ -121,3 +121,12 @@ function wpia_editable_bloginfo( $output, $show ) {
 	return $output;
 }
 add_filter( 'bloginfo', 'wpia_editable_bloginfo', 99999, 2 );
+
+function wpia_editable_content( $content ) {
+	$link = get_edit_post_link();
+	$link = str_replace( admin_url(), '', $link ); // crappy hack
+	$link = $link . '#wpia-content_ifr';
+	$title = get_the_title();
+	return wpia_editable_wrap( $content, $link, 'The main body of the post, &quot;' . $title . '.&quot;');
+}
+add_filter( 'the_content', 'wpia_editable_content', 99999 );
