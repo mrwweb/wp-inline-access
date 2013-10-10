@@ -61,6 +61,7 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Screenshots ==
 
 1. This plugin creates a new "Toggle Edit Mode" button in the Admin Bar. Click it to learn about the web page you're viewing and enable clickable, editable elements.
+2. Once clicked on the front end, the clicked element is highlighted. (Widgets are especially pretty.)
 
 == Changelog ==
 
