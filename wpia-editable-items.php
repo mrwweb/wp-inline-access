@@ -166,3 +166,16 @@ function wpia_editable_excerpt( $excerpt ) {
 	return wpia_editable_wrap( $excerpt, $link, $tooltip );
 }
 add_filter( 'the_excerpt', 'wpia_editable_excerpt', 99999 );
+
+function wpia_editable_tags( $tags, $before, $sept, $after, $post_id ) {
+	$link = get_edit_post_link( $post_id );
+	$link = str_replace( admin_url(), '', $link ); // crappy hack
+	$link = $link . '#wpia-tagsdiv-post_tag';
+
+	$title = get_the_title( $post_id );
+
+	$tooltip = 'The &quot;Tags&quot; for the post, &quot;' . $title . '.&quot;';
+	
+	return wpia_editable_wrap( $tags, $link, $tooltip );
+}
+add_filter( 'the_tags', 'wpia_editable_tags', 99999, 5 );
