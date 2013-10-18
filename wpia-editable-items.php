@@ -64,6 +64,11 @@ function wpia_editable_nav_menu( $menu, $args ) {
 
 	$registered_menus = get_registered_nav_menus();
 	$menu_locations = get_nav_menu_locations();
+
+	// handle situations where menu is in a widget
+	if( !array_key_exists($args->theme_location, $registered_menus) || !array_key_exists($args->theme_location, $menu_locations ) )
+		return;
+
 	$menu_location = $registered_menus[$args->theme_location];
 	$menu_id = (int) $menu_locations[$args->theme_location];
 	$menu_object = wp_get_nav_menu_object( $menu_id );
@@ -73,7 +78,7 @@ function wpia_editable_nav_menu( $menu, $args ) {
 	$tooltip = sprintf(
 		'This is the &quot;%1$s&quot; Menu in the theme\'s &quot;%2$s&quot; Menu Location.',
 		esc_attr( $menu_object->name ),
-		esc_attr($menu_location)
+		esc_attr( $menu_location )
 	);
 
 	return wpia_editable_wrap( $menu, $href, $tooltip );

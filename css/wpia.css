@@ -142,5 +142,5 @@ select.wpia-targeted,
 .postbox .inside {
 	/* contain floats for targeted styles prettiness */
 	overflow: hidden;
-	margin-top:0;
+	margin-top:0 !important;
 }
