@@ -127,16 +127,16 @@ function wpia_editable_bloginfo( $output, $show ) {
 }
 add_filter( 'bloginfo', 'wpia_editable_bloginfo', 99999, 2 );
 
-function wpia_editable_content( $content ) {
+function wpia_editable_the_content( $content ) {
 	$link = get_edit_post_link();
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-content_ifr';
 	$title = get_the_title();
 	return wpia_editable_wrap( $content, $link, 'The main body of the post, &quot;' . $title . '.&quot;');
 }
-add_filter( 'the_content', 'wpia_editable_content', 99999 );
+add_filter( 'the_content', 'wpia_editable_the_content', 99999 );
 
-function wpia_editable_post_thumb( $html, $post_id ) {
+function wpia_editable_the_post_thumbnail( $html, $post_id ) {
 	// if no post thumbnail
 	if( $html == '' )
 		return;
@@ -147,9 +147,9 @@ function wpia_editable_post_thumb( $html, $post_id ) {
 	$title = get_the_title( $post_id );
 	return wpia_editable_wrap( $html, $link, 'The &quot;Featured Image&quot; of the post, &quot;' . $title . '.&quot;');
 }
-add_filter( 'post_thumbnail_html', 'wpia_editable_post_thumb', 99999, 2 );
+add_filter( 'post_thumbnail_html', 'wpia_editable_the_post_thumbnail', 99999, 2 );
 
-function wpia_editable_excerpt( $excerpt ) {
+function wpia_editable_the_excerpt( $excerpt ) {
 	$post_id = get_the_ID();
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
@@ -165,9 +165,9 @@ function wpia_editable_excerpt( $excerpt ) {
 	}
 	return wpia_editable_wrap( $excerpt, $link, $tooltip );
 }
-add_filter( 'the_excerpt', 'wpia_editable_excerpt', 99999 );
+add_filter( 'the_excerpt', 'wpia_editable_the_excerpt', 99999 );
 
-function wpia_editable_tags( $tags, $before, $sept, $after, $post_id ) {
+function wpia_editable_the_tags( $tags, $before, $sept, $after, $post_id ) {
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-tagsdiv-post_tag';
@@ -178,9 +178,9 @@ function wpia_editable_tags( $tags, $before, $sept, $after, $post_id ) {
 	
 	return wpia_editable_wrap( $tags, $link, $tooltip );
 }
-add_filter( 'the_tags', 'wpia_editable_tags', 99999, 5 );
+add_filter( 'the_tags', 'wpia_editable_the_tags', 99999, 5 );
 
-function wpia_editable_excerpt( $category_list ) {
+function wpia_editable_the_category( $category_list ) {
 	$post_id = get_the_ID();
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
@@ -192,4 +192,4 @@ function wpia_editable_excerpt( $category_list ) {
 	
 	return wpia_editable_wrap( $category_list, $link, $tooltip );
 }
-add_filter( 'the_category', 'wpia_editable_excerpt', 99999 );
+add_filter( 'the_category', 'wpia_editable_the_category', 99999 );
