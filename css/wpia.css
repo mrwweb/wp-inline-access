@@ -139,7 +139,9 @@ select.wpia-targeted,
 	box-shadow: 0 0 4px rgba(0,0,0,.4);
 }
 
-#postimagediv .inside {
+#postimagediv .inside,
+#tagsdiv-post_tag .inside,
+#categorydiv .inside {
 	/* contain floats for targeted styles prettiness */
 	overflow: hidden;
 	margin-top:0;
