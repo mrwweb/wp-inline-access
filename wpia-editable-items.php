@@ -130,3 +130,12 @@ function wpia_editable_content( $content ) {
 	return wpia_editable_wrap( $content, $link, 'The main body of the post, &quot;' . $title . '.&quot;');
 }
 add_filter( 'the_content', 'wpia_editable_content', 99999 );
+
+function wpia_editable_post_thumb( $html, $post_id ) {
+	$link = get_edit_post_link( $post_id );
+	$link = str_replace( admin_url(), '', $link ); // crappy hack
+	$link = $link . '#wpia-postimagediv';
+	$title = get_the_title( $post_id );
+	return wpia_editable_wrap( $html, $link, 'The &quot;Featured Image&quot; of the post, &quot;' . $title . '.&quot;');
+}
+add_filter( 'post_thumbnail_html', 'wpia_editable_post_thumb', 99999, 2 );

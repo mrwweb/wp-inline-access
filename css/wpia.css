@@ -35,6 +35,9 @@
 	background: #f0f0b8;
 	cursor: pointer;
 }
+.wpia-edit-link:hover img {
+	opacity:.7;
+}
 
 
 /* The Info Bar 
@@ -111,17 +114,21 @@
 .widget-inside,
 input,
 select,
-#content_ifr {
+#content_ifr,
+.postbox .hndle,
+.postbox .inside {
 	-webkit-transition: background-color 1s .5s, color 1s .5s, border 1s .5s, box-shadow 1s .5s;
 	-ms-transition: background-color 1s .5s, color 1s .5s, border 1s .5s, box-shadow 1s .5s;
 	transition: background-color 1s .5s, color 1s .5s, border 1s .5s, box-shadow 1s .5s;
 }
 
-.wpia-active-widget .widget-top {
+.wpia-active-widget .widget-top,
+.postbox.wpia-targeted .hndle {
 	background-color:#2EA2CB;
 	color:#fff;
 }
-.wpia-active-widget .widget-inside {
+.wpia-active-widget .widget-inside,
+.postbox.wpia-targeted .inside {
 	background-color:#CFE1EF;
 }
 
