@@ -137,6 +137,10 @@ function wpia_editable_content( $content ) {
 add_filter( 'the_content', 'wpia_editable_content', 99999 );
 
 function wpia_editable_post_thumb( $html, $post_id ) {
+	// if no post thumbnail
+	if( $html == '' )
+		return;
+
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-postimagediv';
@@ -154,11 +158,11 @@ function wpia_editable_excerpt( $excerpt ) {
 	$title = get_the_title( $post_id );
 
 	$tooltip = false;
-	if( has_excerpt( $post_ID ) ) {
+	if( has_excerpt( $post_id ) ) {
 		$tooltip = 'The &quot;Excerpt&quot; of the post, &quot;' . $title . '.&quot;';
 	} else {
 		$tooltip = 'An auto-generated &quot;excerpt&quot; for the post, &quot;' . $title . '.&quot; Use the &quot;Excerpt&quot; field to customize.';
 	}
-	return wpia_editable_wrap( $html, $link, $tooltip );
+	return wpia_editable_wrap( $excerpt, $link, $tooltip );
 }
-add_filter( 'the_excerpt', 'wpia_editable_excerpt', 99999, 2 );
+add_filter( 'the_excerpt', 'wpia_editable_excerpt', 99999 );
