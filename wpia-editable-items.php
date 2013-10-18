@@ -43,6 +43,10 @@ function wpia_editable_span( $path, $tooltip = false ) {
  * @uses wpia_editable_span()
  */
 function wpia_editable_wrap( $element, $path, $tooltip = false ) {
+	// some functions get used in the admin. bail if that's the case.
+	if( is_admin() )
+		return $element;
+
 	return wpia_editable_span( $path, $tooltip ) . $element . '</span>';
 }
 
