@@ -65,6 +65,11 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 == Changelog ==
 
+= 0.3.0 (October 18, 2013) =
+* Newly editable fields: Excerpt, Featured Image
+* New styles for targeted metaboxes on the admin
+* Dims images in editable elements when hovered
+
 = 0.2.0 (October 10, 2013) =
 * Zoom to and highlight clicked edit in admin.
 * "Site description" is now editable
