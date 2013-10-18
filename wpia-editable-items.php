@@ -67,7 +67,7 @@ function wpia_editable_nav_menu( $menu, $args ) {
 
 	// handle situations where menu is in a widget
 	if( !array_key_exists($args->theme_location, $registered_menus) || !array_key_exists($args->theme_location, $menu_locations ) )
-		return;
+		return $menu;
 
 	$menu_location = $registered_menus[$args->theme_location];
 	$menu_id = (int) $menu_locations[$args->theme_location];
