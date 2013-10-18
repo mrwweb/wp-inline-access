@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: Inline Access, Editing, Admin, Front End Access
 Requires at least: Unknown
 Tested up to: 3.6
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 
 An alternative to front end editing. Click on an element, teleport to the right admin screen.
@@ -66,9 +66,10 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Changelog ==
 
 = 0.3.0 (October 18, 2013) =
-* Newly editable fields: Excerpt, Featured Image
+* Newly editable fields: Excerpt, Featured Image, Categories, Tags
 * New styles for targeted metaboxes on the admin
 * Dims images in editable elements when hovered
+* Don't allow editable elements in the admin
 
 = 0.2.0 (October 10, 2013) =
 * Zoom to and highlight clicked edit in admin.

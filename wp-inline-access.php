@@ -3,14 +3,14 @@
  * Plugin Name: WP Inline Access
  * Plugin URI: http://MRWweb.com/wp-inline-access/
  * Description: An alternative to front end editing. Click on an element, teleport to the right admin screen.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Author: Mark Root-Wiley
  * Author URI: http://MRWweb.com
  * License: GPLv2 or later
  */
 
 /* Version constant */
-define( 'WPIA_VERSION', '0.2.0' );
+define( 'WPIA_VERSION', '0.3.0' );
 
 /**
  * Load scripts for front end and back end

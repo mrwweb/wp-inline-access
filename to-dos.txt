@@ -5,6 +5,10 @@ An incredibly incomplete list of things left to do
 * Is there any other use for edit mode in the back end? Probably not.
 * Styles (and click events?) for targeted elements (added this for widgets, select, and input on 10/09/13)
 
+== Styles ==
+* better handling of inline elements (as opposed to block) on front end
+* better interface that will be more style agnostic for better theme support
+
 == Edit Support For ==
 * Site Title
 * posts (i.e. not just the post type "Posts")
@@ -12,6 +16,9 @@ An incredibly incomplete list of things left to do
 * Term descriptions
 * Comments?
 * Custom Fields (aka Post Meta)
+* the_title, basically impossible to filter. boo
+
+* IMPORTANT: handle permissions when editing an element
 
 == Info Bar Information ==
 * Archives:
