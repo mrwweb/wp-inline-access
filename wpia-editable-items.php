@@ -184,7 +184,7 @@ function wpia_editable_excerpt( $category_list ) {
 	$post_id = get_the_ID();
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
-	$link = $link . '#wpia-postexcerpt';
+	$link = $link . '#wpia-categorydiv';
 
 	$title = get_the_title( $post_id );
 
