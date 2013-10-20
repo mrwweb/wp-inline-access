@@ -65,6 +65,9 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 == Changelog ==
 
+= 0.4.0 =
+* More info in the Info Bar: Post Format (archive and single post), 
+
 = 0.3.0 (October 18, 2013) =
 * Newly editable fields: Excerpt, Featured Image, Categories, Tags
 * New styles for targeted metaboxes on the admin
@@ -83,6 +86,9 @@ This plugin is a proof of concept for something that, if I dream big, might make
 * Alpha Release
 
 == Upgrade Notice ==
+
+= 0.4.0 =
+More info in the Info Bar.
 
 = 0.2.0 =
 Highlight clicked element in dashboard. Content and Tagline are editable. CSS improvements. See changelog for deets.
