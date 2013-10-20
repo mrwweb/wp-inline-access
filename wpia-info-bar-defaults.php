@@ -18,6 +18,8 @@ function wpia_info_bar_page_type() {
 	global $wp_query;
 	$queried_object = get_queried_object();
 
+	global $_wp_theme_features;
+
 	/* Add the Type */
 	$type = false;
 	$value_tooltip = false;
@@ -30,6 +32,9 @@ function wpia_info_bar_page_type() {
 		if( get_query_var('page_id') == get_option( 'page_on_front' ) ) {
 			add_action( 'wpia_info_bar', 'wpia_info_bar_front' );
 		}
+		if( $wp_query->is_single ) {
+			add_action( 'wpia_info_bar', 'wpia_info_bar_post_format' );
+		}
 	} elseif ( $wp_query->is_posts_page ) {
 		$type = 'Page for Posts';
 		$value_tooltip = 'This page shows a chronological listing of all Posts.';
@@ -38,7 +43,12 @@ function wpia_info_bar_page_type() {
 	} elseif ( $wp_query->is_category ) {
 		$type = 'Category Archive';
 	} elseif ( $wp_query->is_tax ) {
-		$type = 'Taxonomy Term Archive';
+		if( $queried_object->taxonomy == 'post_format' ) {
+			$type = 'Post Format Archive';
+			add_action( 'wpia_info_bar', 'wpia_info_bar_post_format' );
+		} else {
+			$type = 'Taxonomy Term Archive';
+		}
 	} elseif ( $wp_query->is_post_type_archive ) {
 		$type = 'Post Type Archive';
 	} elseif ( $wp_query->is_search ) {
@@ -97,4 +107,24 @@ function wpia_info_bar_page_template() {
 
 function wpia_info_bar_front() {
 	echo wpia_info_bar_item( 'Front Page', 'This page is set as the &quot;Static Front Page&quot; on <strong><a href="' . admin_url( '/options-reading.php#wpia-page_on_front' ) . '">Settings > Reading</a></strong>.' );
+}
+
+function wpia_info_bar_post_format() {
+	global $wp_query;
+
+	if( $wp_query->is_single ) {
+		$post_format = get_post_format() ? get_post_format() : 'Standard';
+	} else {
+		$queried_object = get_queried_object();
+		$post_format = $queried_object->name;
+	}
+
+	// make sure theme supports post formats
+	global $_wp_theme_features;
+	if( ! array_key_exists('post-formats', $_wp_theme_features)
+		&& array_search($post_format, $_wp_theme_features['post-formats'][0]) == -1 )
+		return;
+
+	echo wpia_info_bar_item( 'Post Format', $post_format, 'Themes can use Post Formats to alter how a post appears.' );
+
 }
