@@ -78,11 +78,11 @@ add_action( 'wpia_info_bar', 'wpia_info_bar_page_type', -10 );
 /**
  * output template value in info par
  * 
- * @return string           info bar item listing page template
- * 
  * @uses   wpia_info_bar_item
  * @uses   wp_get_theme()
  * @uses   get_page_template_slug()
+ * 
+ * @return string           info bar item listing page template
  */
 function wpia_info_bar_page_template() {
 	global $wp_query;
@@ -109,6 +109,14 @@ function wpia_info_bar_front() {
 	echo wpia_info_bar_item( 'Front Page', 'This page is set as the &quot;Static Front Page&quot; on <strong><a href="' . admin_url( '/options-reading.php#wpia-page_on_front' ) . '">Settings > Reading</a></strong>.' );
 }
 
+/**
+ * outputs post format on archive and post pages if theme supports them
+ * 
+ * @uses get_post_format
+ * @uses  get_queried_object
+ * 
+ * @return strings Info bar item for post format
+ */
 function wpia_info_bar_post_format() {
 	global $wp_query;
 

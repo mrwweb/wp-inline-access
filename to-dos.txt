@@ -33,6 +33,7 @@ An incredibly incomplete list of things left to do
 ** Post Type(s)
 ** Terms
 ** Taxonomies
+** Post Format (done, 10/20/13)
 
 * Settings:
 ** Page For Posts
@@ -42,7 +43,7 @@ An incredibly incomplete list of things left to do
 ** Parent
 
 * On Post post type posts: (Say that 10x fast!)
-** Post Format
+** Post Format (done, 10/20/13)
 
 * On singular
 ** Last Updated? (This seems most useful)
