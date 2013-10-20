@@ -51,13 +51,12 @@ function wpia_info_bar_page_type() {
 		}
 	} elseif ( $wp_query->is_post_type_archive ) {
 		$type = 'Post Type Archive';
+		add_action( 'wpia_info_bar', 'wpia_info_bar_archive_post_type' );
 	} elseif ( $wp_query->is_search ) {
 		$type = 'Search Results Page';
 	} elseif ( $wp_query->is_404 ) {
 		$type = '404 Page';
 		$value_tooltip = 'A "404 Error" means the intended page cannot be found.';
-	} elseif ( $wp_query->is_post_type_archive ) {
-		$type = 'Post Type Archive';
 	} elseif ( $wp_query->is_author ) {
 		$type = 'Author Archive';
 	} elseif ( $wp_query->is_day ) {
@@ -135,4 +134,9 @@ function wpia_info_bar_post_format() {
 
 	echo wpia_info_bar_item( 'Post Format', $post_format, 'Themes can use Post Formats to alter how a post appears.' );
 
+}
+
+function wpia_info_bar_archive_post_type() {
+	$post_type = get_query_var( 'post_type' );
+	echo wpia_info_bar_item( 'Post Type', $post_type );
 }
