@@ -8,10 +8,14 @@ An incredibly incomplete list of things left to do
 == Styles ==
 * better handling of inline elements (as opposed to block) on front end
 * better interface that will be more style agnostic for better theme support
+	* thick left border?
+	* persistent cog icon?
+	* color overlay?
 
 == Edit Support For ==
 * Site Title
 * posts (i.e. not just the post type "Posts")
+	* I don't see how this is possible without theme hooks.
 * Term descriptions
 * Comments?
 * Custom Fields (aka Post Meta)
@@ -19,7 +23,7 @@ An incredibly incomplete list of things left to do
 
 == Other ==
 * IMPORTANT: handle permissions when editing an element
-* Handle nested editable elements. Examples
+* Handle nested editable elements.
 	* Excerpt/Featured image in Feature a Page Widget output
 	* Menus in "Menus" Widget (and categories and tags widgets probably)
 *  more bullet-proofy prevent default handling
