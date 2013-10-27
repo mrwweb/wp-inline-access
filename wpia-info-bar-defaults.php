@@ -37,7 +37,7 @@ function wpia_info_bar_page_type() {
 		}
 	} elseif ( $wp_query->is_posts_page ) {
 		$type = 'Page for Posts';
-		$value_tooltip = 'This page shows a chronological listing of all Posts.';
+		add_action( 'wpia_info_bar', 'wpia_info_bar_posts_page' );
 	} elseif ( $wp_query->is_tag ) {
 		$type = 'Tag Archive';
 	} elseif ( $wp_query->is_category ) {
@@ -106,6 +106,10 @@ function wpia_info_bar_page_template() {
 
 function wpia_info_bar_front() {
 	echo wpia_info_bar_item( 'Front Page', 'This page is set as the &quot;Static Front Page&quot; on <strong><a href="' . admin_url( '/options-reading.php#wpia-page_on_front' ) . '">Settings > Reading</a></strong>.' );
+}
+
+function wpia_info_bar_posts_page() {
+	echo wpia_info_bar_item( 'Page for Posts', 'This page is set as the &quot;Page for Posts&quot; on <strong><a href="' . admin_url( '/options-reading.php#wpia-page_for_posts' ) . '">Settings > Reading</a></strong>.' );
 }
 
 /**
