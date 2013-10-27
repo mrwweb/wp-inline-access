@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: Inline Access, Editing, Admin, Front End Access
 Requires at least: Unknown
 Tested up to: 3.6
-Stable tag: 0.3.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 
 An alternative to front end editing. Click on an element, teleport to the right admin screen.
@@ -19,10 +19,21 @@ Front end (or "inline") editing sounds great until you try to apply it to large 
 This plugin is designed to work best in conjunction with [MP6](http://wordpress.org/plugins/mp6/) or WP3.8+ and one of the tested themes below.
 
 = Editable Items Supported =
-* Menus
-* Widgets
-* Site Description ("Tagline")
-* Body Content (i.e. `the_content`)
+* Menus (`wp_nav_menu`)
+* Widgets (`dynamic_sidebar`)
+* Site Description ("Tagline", `get_bloginfo`)
+* Body Content (`the_content`)
+* Featured Image (aka Post Thumbnail, `the_post_thubnail`)
+* Excerpt (`the_excerpt`)
+* Tags (`the_tags`)
+* Categories (`the_category`)
+
+= Info Bar Information =
+* Page Type (aka Post Type, Archive, Page for Posts, 404, Search Results, etc.)
+* Page Template (when appropriate)
+* Post Format
+* Post Type Archive Post Type
+* Page on Front and Page for Posts settings (in Info Bar)
 
 = Tested Browsers =
 * Chrome
@@ -66,7 +77,8 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Changelog ==
 
 = 0.4.0 =
-* More info in the Info Bar: Post Format (archive and single post), 
+* More info in the Info Bar: Post Format (archive and single post), Page for Posts option
+* Regression: Widget highlighting doesn't work with new versions of MP6 / Features as Plugin Widget admin plugins.
 
 = 0.3.0 (October 18, 2013) =
 * Newly editable fields: Excerpt, Featured Image, Categories, Tags
