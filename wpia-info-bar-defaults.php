@@ -38,6 +38,7 @@ function wpia_info_bar_page_type() {
 		if( $wp_query->is_single ) {
 			add_action( 'wpia_info_bar', 'wpia_info_bar_post_format' );
 		}
+		add_action( 'wpia_info_bar', 'wpia_info_bar_modified_time' );
 	} elseif ( $wp_query->is_posts_page ) {
 		$type = 'Page for Posts';
 		add_action( 'wpia_info_bar', 'wpia_info_bar_posts_page' );
@@ -158,5 +159,13 @@ function wpia_info_bar_page_parent() {
 	if( $post_parent !== 0 ) {
 		echo wpia_info_bar_item( 'Page Parent', $value, 'The Page Parent determines this page\'s URL structure' );
 	}
+}
 
+function wpia_info_bar_modified_time() {
+	if( get_the_modified_time('r') == get_the_time('r') ) {
+		$label = 'Published';
+	} else {
+		$label = 'Last Modified';
+	}
+	echo wpia_info_bar_item( $label, get_the_modified_time( 'H:i, j M Y' ) );
 }
