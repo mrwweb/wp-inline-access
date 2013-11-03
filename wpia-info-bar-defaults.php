@@ -26,8 +26,11 @@ function wpia_info_bar_page_type() {
 
 	if( $wp_query->is_singular ) {
 		$type = $queried_object->post_type;
-		if( $wp_query->is_page && is_page_template() ) {
-			add_action( 'wpia_info_bar', 'wpia_info_bar_page_template' );
+		if( $wp_query->is_page ) {
+			add_action( 'wpia_info_bar', 'wpia_info_bar_page_parent' );
+			if ( is_page_template() ) {
+				add_action( 'wpia_info_bar', 'wpia_info_bar_page_template' );
+			}
 		}
 		if( get_query_var('page_id') == get_option( 'page_on_front' ) ) {
 			add_action( 'wpia_info_bar', 'wpia_info_bar_front' );
@@ -94,14 +97,14 @@ function wpia_info_bar_page_template() {
 	if( !array_key_exists($page_template, $page_templates) )
 		return;
 
-	$template_name = $page_templates[$page_template];
+	$value = sprintf( '%1$s [<a href="%2$s#wpia-page_template">Change Template</a>]', $page_templates[$page_template], get_edit_post_link() );
 
 	// Create a value tooltip for optional usage by themes
 	$value_tooltip = false;
 	$value_tooltip = apply_filters( 'wpia_template_value_tooltip', $value_tooltip );
 	
 	// Output template tooltip
-	echo wpia_info_bar_item( 'Page Template', $template_name, 'A page template changes the layout or adds special content to a Page.', $value_tooltip );
+	echo wpia_info_bar_item( 'Page Template', $value, 'A page template changes the layout or adds special content to a Page.', $value_tooltip );
 }
 
 function wpia_info_bar_front() {
@@ -143,4 +146,17 @@ function wpia_info_bar_post_format() {
 function wpia_info_bar_archive_post_type() {
 	$post_type = get_query_var( 'post_type' );
 	echo wpia_info_bar_item( 'Post Type', $post_type );
+}
+
+function wpia_info_bar_page_parent() {
+	$queried_object = get_queried_object();
+	$post_parent = $queried_object->post_parent;
+	$value = sprintf( '%1$s [<a href="%2$s#wpia-parent_id">Edit Parent</a>]',
+		get_the_title( $post_parent ),
+		get_edit_post_link()
+	);
+	if( $post_parent !== 0 ) {
+		echo wpia_info_bar_item( 'Page Parent', $value, 'The Page Parent determines this page\'s URL structure' );
+	}
+
 }

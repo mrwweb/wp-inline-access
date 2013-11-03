@@ -36,7 +36,7 @@ An incredibly incomplete list of things left to do
 ** Post Format (done, 10/20/13)
 
 * Settings:
-** Page For Posts
+** Page For Posts (done, 10/?/13)
 ** Max Posts Per Page
 
 * On Page post type posts:
