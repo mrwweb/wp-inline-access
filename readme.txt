@@ -78,6 +78,8 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 = 0.5.0 (November 8, 2013) =
 * More info in the Info Bar: Page Parent, Published/Updated Datetime
+* MP6 Style Fixes: widget admin updates
+* No-MP6 Style Fixes: Admin bar height and widget highlighting
 
 = 0.4.0 (October 27, 2013) =
 * More info in the Info Bar: Post Format (archive and single post), Page for Posts option

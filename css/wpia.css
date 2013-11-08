@@ -46,7 +46,7 @@
 	display: none;
 	position:fixed;
 	z-index: 99998; /* Below the admin bar */
-	top: 32px;
+	top: 28px;
 	width: 100%;
 	left: 0;
 	padding: 5px 20px;
@@ -54,6 +54,9 @@
 	font-size: 13px;
 	line-height: 20px;
 	color: #fff;
+}
+.mp6 .wpia-info-bar {
+	top: 32px;
 }
 
 .wpia-info-bar a {
@@ -123,13 +126,22 @@ select,
 }
 
 .wpia-active-widget .widget-top,
-.postbox.wpia-targeted .hndle {
-	background-color:#2EA2CB;
-	color:#fff;
+.postbox.wpia-targeted .hndle,
+.wpia-active-widget .in-widget-title {
+	background-color:#2EA2CB !important; /* fighting with mp6. I'll do 10 hail mary's later */
+	color:#fff !important;
+
+	/* Non-mp6 compatibility*/
+	background-image: none;
+	text-shadow: none;
+	margin-top:0;
+}
+.wpia-active-widget .widget-top a:after {
+	color: #fff !important;
 }
 .wpia-active-widget .widget-inside,
 .postbox.wpia-targeted .inside {
-	background-color:#CFE1EF;
+	background-color:#CFE1EF !important;
 }
 
 input.wpia-targeted,
