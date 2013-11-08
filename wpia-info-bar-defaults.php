@@ -44,15 +44,13 @@ function wpia_info_bar_page_type() {
 		add_action( 'wpia_info_bar', 'wpia_info_bar_posts_page' );
 	} elseif ( $wp_query->is_tag ) {
 		$type = 'Tag Archive';
+		add_action( 'wpia_info_bar', 'wpia_info_bar_term_archive' );
 	} elseif ( $wp_query->is_category ) {
 		$type = 'Category Archive';
+		add_action( 'wpia_info_bar', 'wpia_info_bar_term_archive' );
 	} elseif ( $wp_query->is_tax ) {
-		if( $queried_object->taxonomy == 'post_format' ) {
-			$type = 'Post Format Archive';
-			add_action( 'wpia_info_bar', 'wpia_info_bar_post_format' );
-		} else {
-			$type = 'Taxonomy Term Archive';
-		}
+		$type = 'Taxonomy Term Archive';
+		add_action( 'wpia_info_bar', 'wpia_info_bar_term_archive' );
 	} elseif ( $wp_query->is_post_type_archive ) {
 		$type = 'Post Type Archive';
 		add_action( 'wpia_info_bar', 'wpia_info_bar_archive_post_type' );
@@ -168,4 +166,18 @@ function wpia_info_bar_modified_time() {
 		$label = 'Last Modified';
 	}
 	echo wpia_info_bar_item( $label, get_the_modified_time( 'H:i, j M Y' ) );
+}
+
+function wpia_info_bar_term_archive() {
+	$queried_object = get_queried_object();
+	if( $queried_object->taxonomy == 'post_format' ){
+		$label = 'Post Format';
+	} elseif( is_tax() ) {
+		$label = 'Taxonomy Term';
+	} elseif( is_category() ) {
+		$label = 'Category';
+	} elseif( is_tag() ) {
+		$label = 'Tag';
+	}
+	echo wpia_info_bar_item( $label, single_term_title('',false) );
 }
