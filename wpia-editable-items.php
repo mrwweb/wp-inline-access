@@ -172,6 +172,10 @@ function wpia_editable_the_excerpt( $excerpt ) {
 add_filter( 'the_excerpt', 'wpia_editable_the_excerpt', 99999 );
 
 function wpia_editable_the_tags( $tags, $before, $sept, $after, $post_id ) {
+	// no tags to edit
+	if( !$tags )
+		return $tags;
+
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-tagsdiv-post_tag';
@@ -185,6 +189,10 @@ function wpia_editable_the_tags( $tags, $before, $sept, $after, $post_id ) {
 add_filter( 'the_tags', 'wpia_editable_the_tags', 99999, 5 );
 
 function wpia_editable_the_category( $category_list ) {
+	// no categories to edit
+	if( empty( $category_list ) )
+		return $category_list;
+
 	$post_id = get_the_ID();
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack

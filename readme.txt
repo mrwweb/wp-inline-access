@@ -77,7 +77,8 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Changelog ==
 
 = 0.5.0 (November 8, 2013) =
-* More info in the Info Bar: Page Parent, Published/Updated Datetime
+* Improved editable handling of tags/categories when empty
+* More info in the Info Bar: Page Parent, Published/Updated Datetime, Term for Term/Tag/Category/Post Format archives
 * MP6 Style Fixes: widget admin updates
 * No-MP6 Style Fixes: Admin bar height and widget highlighting
 

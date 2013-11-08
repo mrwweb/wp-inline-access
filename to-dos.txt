@@ -16,7 +16,7 @@ An incredibly incomplete list of things left to do
 * Site Title
 * posts (i.e. not just the post type "Posts")
 	* I don't see how this is possible without theme hooks.
-* Term descriptions
+* Term descriptions, basically impossible to filter. boo
 * Comments?
 * Custom Fields (aka Post Meta)
 * the_title, basically impossible to filter. boo
@@ -49,6 +49,12 @@ An incredibly incomplete list of things left to do
 ** Last Updated? (This seems most useful, added 11/3/13)
 ** Posted?
 ** Terms?
+
+* Fields that seem impossible to filter/action without new hooks or theme hooks
+** Site Title
+** the_title
+** term_description
+** whole posts
 
 == Example Additional Plugin Support ==
 * ACF
