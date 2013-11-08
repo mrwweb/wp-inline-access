@@ -30,7 +30,7 @@ An incredibly incomplete list of things left to do
 
 == Info Bar Information ==
 * Archives:
-** Post Type(s)
+** Post Type(s) (done 10/?/13)
 ** Terms
 ** Taxonomies
 ** Post Format (done, 10/20/13)
@@ -40,13 +40,13 @@ An incredibly incomplete list of things left to do
 ** Max Posts Per Page
 
 * On Page post type posts:
-** Parent
+** Parent (done 11/3/13)
 
 * On Post post type posts: (Say that 10x fast!)
 ** Post Format (done, 10/20/13)
 
 * On singular
-** Last Updated? (This seems most useful)
+** Last Updated? (This seems most useful, added 11/3/13)
 ** Posted?
 ** Terms?
 

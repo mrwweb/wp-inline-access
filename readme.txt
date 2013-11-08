@@ -76,7 +76,10 @@ This plugin is a proof of concept for something that, if I dream big, might make
 
 == Changelog ==
 
-= 0.4.0 =
+= 0.5.0 (November 8, 2013) =
+* More info in the Info Bar: Page Parent, Published/Updated Datetime
+
+= 0.4.0 (October 27, 2013) =
 * More info in the Info Bar: Post Format (archive and single post), Page for Posts option
 * Regression: Widget highlighting doesn't work with new versions of MP6 / Features as Plugin Widget admin plugins.
 
