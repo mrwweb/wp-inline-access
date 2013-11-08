@@ -9,8 +9,9 @@ function wpiaToggleEditMode() {
 	$editableItems = $('.wpia-is-editable');
 	if( $('body').hasClass('wpia-toggled') ) {
 		$editableItems.each( function() {
+			displayType = $(this).children(':first').css('display');
 			$(this)
-			.wrap('<a class="wpia-edit-link" href="' + $(this).data('wpia-edit-href') + '">')
+			.wrap('<a class="wpia-edit-link wpia-edit-link-' + displayType + '" href="' + $(this).data('wpia-edit-href') + '">')
 			.tooltip({
 				items: '[data-wpia-edit-tooltip]',
 				content: function() {

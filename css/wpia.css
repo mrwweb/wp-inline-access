@@ -16,6 +16,13 @@
 	display: block !important;
 	overflow: hidden !important; /* handle floated editable elements */
 }
+.wpia-edit-link-inline,
+.wpia-edit-link-undefined,
+.wpia-edit-link-inline .wpia-is-editable,
+.wpia-edit-link-undefined .wpia-is-editable {
+	display: inline !important;
+}
+
 .wpia-edit-link {
 	padding:0 !important;
 	margin:0 !important;
