@@ -9,6 +9,11 @@ function wpiaToggleEditMode() {
 	$editableItems = $('.wpia-is-editable');
 	if( $('body').hasClass('wpia-toggled') ) {
 		$editableItems.each( function() {
+
+			// for now, prevent nested wrapped elements
+			if( $(this).parents('.wpia-is-editable').exists() )
+				return;
+
 			$editableItem = $(this).children(':first');
 
 			displayType = $editableItem.css('display');

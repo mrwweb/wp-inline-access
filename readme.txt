@@ -77,8 +77,9 @@ This plugin is a proof of concept for something that, if I dream big, might make
 == Changelog ==
 
 = 0.5.0 (November 8, 2013) =
-* First pass at capability checks on all editable elements.
-* Improved editable handling of tags/categories when empty
+* Capability checks on all editable elements.
+* Don't create empty editable items. (Refactored basic helper functions.)
+* [Temporarily?] Prevent nested editable elements.
 * Support for inline, inline-block, and block editable elements. Previously everything was forced to `display:block;`
 * More info in the Info Bar: Page Parent, Published/Updated Datetime, Term for Term/Tag/Category/Post Format archives
 * MP6 Style Fixes: widget admin updates
@@ -106,6 +107,8 @@ This plugin is a proof of concept for something that, if I dream big, might make
 * Alpha Release
 
 == Upgrade Notice ==
+= 0.5.0 =
+TONS of improvements! New info. Safer editing. Cleaner editable styles. Widget style fixes.
 
 = 0.4.0 =
 More info in the Info Bar.
