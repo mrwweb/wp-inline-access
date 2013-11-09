@@ -112,7 +112,7 @@ function wpia_editable_bloginfo( $output, $show ) {
 		case 'description':
 			$href = '/options-general.php#wpia-blogdescription';
 			$tooltip = 'The &quot;Tagline&quot; (or &quot;Site Description&quot;) is a site-wide setting.';
-			$output = wpia_editable( $output, 'manage_settings', $href, $tooltip );
+			$output = wpia_editable( $output, 'manage_options', $href, $tooltip );
 			break;
 
 		// site name is getting used in attributes, even in twenty twelve. not sure what to do about that.

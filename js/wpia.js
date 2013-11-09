@@ -10,7 +10,15 @@ function wpiaToggleEditMode() {
 	if( $('body').hasClass('wpia-toggled') ) {
 		$editableItems.each( function() {
 			$editableItem = $(this).children(':first');
-			displayType = $editableItem.is('img') ? 'block' : $editableItem.css('display');
+
+			displayType = $editableItem.css('display');
+
+			if( $editableItem.is('img') ) {
+				displayType = 'block';
+			} else if( typeof displayType === 'undefined' ) {
+				displayType = 'inline';
+			}
+
 			$(this)
 			.wrap('<a class="wpia-edit-link wpia-edit-link-' + displayType + '" href="' + $(this).data('wpia-edit-href') + '">')
 			.tooltip({
