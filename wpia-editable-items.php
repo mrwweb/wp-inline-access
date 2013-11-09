@@ -10,44 +10,37 @@
  * ===============================================*/
 
 /**
- * output span used to define an editable region
+ * Wrap an element with span for editing
  * 
- * @param  string  $path    admin path for editing, passed to admin_url()
- * @param  string|bool $tooltip Text for tooltip in hover mode
+ * @param  string  		$element 	HTML element to output
+ * @param  string  		$path    	admin path for editing, passed to admin_url()
+ * @param  string|bool 	$tooltip 	Text for tooltip in hover mode
+ * @param  string|array	$capability	capability required to edit this element, pass array if you need both arguments
+ * @param  bool 		$span_only	return only the opening-span. occasionally useful
  * 
- * @return string           html string, opening span
+ * Note: For double-quotes in $tooltip, use "&quot;"
  * 
- * @uses	admin_url
+ * @return string	$element wrapped by span for edit mode
  */
-function wpia_editable_span( $path, $tooltip = false ) {
-	$wrapped = sprintf(
+function wpia_editable( $element, $capability = false, $path, $tooltip = false, $span_only = false ) {
+	// cast $capability as an array to handle multiple args
+	$capability = (array) $capability;
+
+	// make sure we're logged in, not in the admin, and have correct permissions
+	if( !is_user_logged_in() || is_admin() || !call_user_func_array('current_user_can', $capability ) )
+		return $element;
+
+	$span = sprintf(
 		'<span class="wpia-is-editable" data-wpia-edit="true" data-wpia-edit-href="%1$s" data-wpia-edit-tooltip="%2$s">',
 		admin_url( $path ),
 		$tooltip
 	);
 
-	return $wrapped;
-}
-
-/**
- * Wrap an element with span for editing
- * 
- * @param  string  $element HTML element to output
- * @param  string  $path    admin path for editing, passed to admin_url()
- * @param  string|bool $tooltip Text for tooltip in hover mode
- * 
- * Note: For double-quotes in $tooltip, use "&quot;"
- * 
- * @return string	$element wrapped by span for edit mode
- * 
- * @uses wpia_editable_span()
- */
-function wpia_editable_wrap( $element, $path, $tooltip = false ) {
-	// some functions get used in the admin. bail if that's the case.
-	if( is_admin() )
-		return $element;
-
-	return wpia_editable_span( $path, $tooltip ) . $element . '</span>';
+	if( $span_only ) {
+		return $span;
+	} else {
+		return $span . $element . '</span>';
+	}
 }
 
 /* ===============================================
@@ -85,7 +78,7 @@ function wpia_editable_nav_menu( $menu, $args ) {
 		esc_attr( $menu_location )
 	);
 
-	return wpia_editable_wrap( $menu, $href, $tooltip );
+	return wpia_editable( $menu, 'edit_theme_options', $href, $tooltip );
 }
 add_filter( 'wp_nav_menu', 'wpia_editable_nav_menu', 99999, 2 );
 
@@ -107,7 +100,7 @@ function wpia_editable_widget( $params ) {
 		$params[0]['name']
 	);
 
-	$params[0]['before_widget'] =  wpia_editable_span( $href, $tooltip ) . $params[0]['before_widget'];
+	$params[0]['before_widget'] =  wpia_editable( '', 'edit_theme_options', $href, $tooltip, true ) . $params[0]['before_widget'];
 	$params[0]['after_widget'] =  $params[0]['after_widget'] . '</span>';
 
 	return $params;
@@ -119,7 +112,7 @@ function wpia_editable_bloginfo( $output, $show ) {
 		case 'description':
 			$href = '/options-general.php#wpia-blogdescription';
 			$tooltip = 'The &quot;Tagline&quot; (or &quot;Site Description&quot;) is a site-wide setting.';
-			$output = wpia_editable_wrap( $output, $href, $tooltip );
+			$output = wpia_editable( $output, 'manage_settings', $href, $tooltip );
 			break;
 
 		// site name is getting used in attributes, even in twenty twelve. not sure what to do about that.
@@ -136,7 +129,7 @@ function wpia_editable_the_content( $content ) {
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-content_ifr';
 	$title = get_the_title();
-	return wpia_editable_wrap( $content, $link, 'The main body of the post, &quot;' . $title . '.&quot;');
+	return wpia_editable( $content, array( 'edit_post', get_the_ID() ), $link, 'The main body of the post, &quot;' . $title . '.&quot;');
 }
 add_filter( 'the_content', 'wpia_editable_the_content', 99999 );
 
@@ -149,7 +142,7 @@ function wpia_editable_the_post_thumbnail( $html, $post_id ) {
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-postimagediv';
 	$title = get_the_title( $post_id );
-	return wpia_editable_wrap( $html, $link, 'The &quot;Featured Image&quot; of the post, &quot;' . $title . '.&quot;');
+	return wpia_editable( $html, array( 'edit_post', get_the_ID() ), $link, 'The &quot;Featured Image&quot; of the post, &quot;' . $title . '.&quot;');
 }
 add_filter( 'post_thumbnail_html', 'wpia_editable_the_post_thumbnail', 99999, 2 );
 
@@ -167,7 +160,7 @@ function wpia_editable_the_excerpt( $excerpt ) {
 	} else {
 		$tooltip = 'An auto-generated &quot;excerpt&quot; for the post, &quot;' . $title . '.&quot; Use the &quot;Excerpt&quot; field to customize.';
 	}
-	return wpia_editable_wrap( $excerpt, $link, $tooltip );
+	return wpia_editable( $excerpt, array( 'edit_post', get_the_ID() ), $link, $tooltip );
 }
 add_filter( 'the_excerpt', 'wpia_editable_the_excerpt', 99999 );
 
@@ -184,7 +177,7 @@ function wpia_editable_the_tags( $tags, $before, $sept, $after, $post_id ) {
 
 	$tooltip = 'The &quot;Tags&quot; for the post, &quot;' . $title . '.&quot;';
 	
-	return wpia_editable_wrap( $tags, $link, $tooltip );
+	return wpia_editable( $tags, 'manage_categories', $link, $tooltip );
 }
 add_filter( 'the_tags', 'wpia_editable_the_tags', 99999, 5 );
 
@@ -202,6 +195,6 @@ function wpia_editable_the_category( $category_list ) {
 
 	$tooltip = 'The &quot;Category&quot; terms for the post, &quot;' . $title . '.&quot;';
 	
-	return wpia_editable_wrap( $category_list, $link, $tooltip );
+	return wpia_editable( $category_list, 'manage_categories', $link, $tooltip );
 }
 add_filter( 'the_category', 'wpia_editable_the_category', 99999 );

@@ -22,11 +22,17 @@
 .wpia-edit-link-undefined .wpia-is-editable {
 	display: inline !important;
 }
+.wpia-edit-link-inline-block,
+.wpia-edit-link-undefined,
+.wpia-edit-link-inline-block .wpia-is-editable,
+.wpia-edit-link-undefined .wpia-is-editable {
+	display: inline-block !important;
+}
 
 .wpia-edit-link {
 	padding:0 !important;
 	margin:0 !important;
-	outline: 1px dashed #6ACBC4 !important;
+	border: 1px dashed #6ACBC4 !important;
 	text-decoration: inherit !important;
 	color: inherit !important;
 }
@@ -38,7 +44,7 @@
 	pointer-events:none;
 }
 .wpia-edit-link:hover {
-	outline: 1px solid #2EA2CB;
+	border: 1px solid #2EA2CB;
 	background: #f0f0b8;
 	cursor: pointer;
 }
