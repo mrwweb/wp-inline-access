@@ -3,7 +3,7 @@ Contributors: mrwweb
 Tags: Inline Access, Editing, Admin, Front End Access
 Requires at least: Unknown
 Tested up to: 3.6
-Stable tag: 0.4.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 
 An alternative to front end editing. Click on an element, teleport to the right admin screen.
