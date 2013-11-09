@@ -23,6 +23,11 @@
  * @return string	$element wrapped by span for edit mode
  */
 function wpia_editable( $element, $capability = false, $path, $tooltip = false, $span_only = false ) {
+
+	// there's nothing to do if $element is empty AND $span_only is false
+	if( empty($element) && !$span_only )
+		return;
+
 	// cast $capability as an array to handle multiple args
 	$capability = (array) $capability;
 
@@ -134,10 +139,6 @@ function wpia_editable_the_content( $content ) {
 add_filter( 'the_content', 'wpia_editable_the_content', 99999 );
 
 function wpia_editable_the_post_thumbnail( $html, $post_id ) {
-	// if no post thumbnail
-	if( $html == '' )
-		return;
-
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-postimagediv';
@@ -165,10 +166,6 @@ function wpia_editable_the_excerpt( $excerpt ) {
 add_filter( 'the_excerpt', 'wpia_editable_the_excerpt', 99999 );
 
 function wpia_editable_the_tags( $tags, $before, $sept, $after, $post_id ) {
-	// no tags to edit
-	if( !$tags )
-		return $tags;
-
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
 	$link = $link . '#wpia-tagsdiv-post_tag';
@@ -182,10 +179,6 @@ function wpia_editable_the_tags( $tags, $before, $sept, $after, $post_id ) {
 add_filter( 'the_tags', 'wpia_editable_the_tags', 99999, 5 );
 
 function wpia_editable_the_category( $category_list ) {
-	// no categories to edit
-	if( empty( $category_list ) )
-		return $category_list;
-
 	$post_id = get_the_ID();
 	$link = get_edit_post_link( $post_id );
 	$link = str_replace( admin_url(), '', $link ); // crappy hack
